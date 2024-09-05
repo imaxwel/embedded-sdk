@@ -17,7 +17,8 @@
 
 static const char *LOG_TAG = "embedded-sdk";
 
-#define WEBSOCKET_URI_SIZE 400
+//#define WEBSOCKET_URI_SIZE 400
+#define WEBSOCKET_URI_SIZE 1024
 #define MTU_SIZE 1500
 #define LIVEKIT_PROTOCOL_VERSION 3
 
@@ -70,6 +71,8 @@ void app_websocket(void) {
   snprintf(ws_uri, sizeof(ws_uri),
            "%s/rtc?protocol=%d&access_token=%s&auto_subscribe=true",
            LIVEKIT_URL, LIVEKIT_PROTOCOL_VERSION, LIVEKIT_TOKEN);
+  ESP_LOGI(LOG_TAG, "%s", ws_uri);
+
 
   esp_websocket_client_config_t ws_cfg;
   memset(&ws_cfg, 0, sizeof(ws_cfg));
